@@ -14,7 +14,7 @@ class ProfileController extends Controller
 
     public function create()
     {
-        return view('admin/profile/create');
+        return view('admin/profile/create-mypage');
     }
 
     public function edit()
