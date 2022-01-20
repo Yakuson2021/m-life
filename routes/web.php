@@ -16,9 +16,16 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('movie/post', 'Admin\MovieController@add');
-    Route::get('profile/create-mypage', 'Admin\ProfileController@add');
-    Route::get('profile/mypage-edit', 'Admin\ProfileController@edit');
-    Route::get('profile/create-mypage', 'Admin\ProfileController@create');
-    Route::get('profile/create', 'Admin\ProfileController@create');
+    Route::get('movie/post', 'Admin\MovieController@add')->middleware('auth');
+    Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
+    Route::get('profile/create-mypage', 'Admin\ProfileController@create')->middleware('auth');
+    Route::get('profile/create', 'Admin\ProfileController@create')->middleware('auth');
 });
+Route::get('/', 'MovieController@index');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

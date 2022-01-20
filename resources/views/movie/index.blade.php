@@ -5,10 +5,10 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>m-lifeマイページ作成</title>
+        <title>m-life</title>
     </head>
     <body>
-        <h1>m-life　マイページ作成</h1>
-        マイページを作成する画面
+        <h1>m-lifeへようこそ</h1>
+        ここからすべてが始まります
     </body>
 </html>
