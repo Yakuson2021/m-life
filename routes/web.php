@@ -16,10 +16,15 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'admin'], function() {
-    Route::get('movie/post', 'Admin\MovieController@add')->middleware('auth');
+    Route::post('movie/post', 'Admin\MovieController@add')->middleware('auth');
+    Route::get('movie/post', 'Admin\MovieController@create')->middleware('auth');
+    
+    Route::get('movie/index', 'Admin\MovieController@index')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
     Route::get('profile/create-mypage', 'Admin\ProfileController@create')->middleware('auth');
     Route::get('profile/create', 'Admin\ProfileController@create')->middleware('auth');
+    
+    
 });
 Route::get('/', 'MovieController@index');
 Auth::routes();

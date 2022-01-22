@@ -11,6 +11,12 @@ class MovieController extends Controller
     {
       return view('admin/movie/post');
     }
+    
+  public function create(Request $request)
+    {
+      return view('admin/movie/post');
+    }
+    
   public function index(Request $request)
   {
       return view('admin.movie.index');
