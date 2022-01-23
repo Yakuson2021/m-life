@@ -11,9 +11,9 @@
             <div class="col-md-8 mx-auto">
               <h2>m-life</h2>
         ここが投稿するページです
-            </div>
+        
                 <form action="{{ action('Admin\MovieController@add') }}" method="post" enctype="multipart/form-data">
-
+ // 以下を追記
                     @if (count($errors) > 0)
                         <ul>
                             @foreach($errors->all() as $e)
@@ -21,27 +21,46 @@
                             @endforeach
                         </ul>
                     @endif
+                    
                     <div class="form-group row">
                         <label class="col-md-2">タイトル</label>
                         <div class="col-md-10">
                             <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                         </div>
                     </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-md-2">音楽ジャンル</label>
+                        <div class="col-md-10">
+                             <input type="text" class="form-control" name="genre" value="{{ old('genre') }}">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-md-2">アーティスト</label>
+                        <div class="col-md-10">
+                             <input type="text" class="form-control" name="musician" value="{{ old('musician') }}">
+                        </div>
+                    </div>
+                    
                     <div class="form-group row">
                         <label class="col-md-2">曲名</label>
                         <div class="col-md-10">
-                            <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
+                             <input type="text" class="form-control" name="songtitle" value="{{ old('songtitle') }}">
                         </div>
                     </div>
+                    
                     <div class="form-group row">
-                        <label class="col-md-2">ああああ</label>
+                        <label class="col-md-2" for="title">動画</label>
                         <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
+                            <input type="file" class="form-control-file" name="movie">
                         </div>
                     </div>
+
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>
+            </div>
             </div>
         </div>
 @endsection

@@ -20,7 +20,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('movie/post', 'Admin\MovieController@create')->middleware('auth');
     
     Route::get('movie/index', 'Admin\MovieController@index')->middleware('auth');
+    
+    Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
+    
     Route::get('profile/create-mypage', 'Admin\ProfileController@create')->middleware('auth');
     Route::get('profile/create', 'Admin\ProfileController@create')->middleware('auth');
     

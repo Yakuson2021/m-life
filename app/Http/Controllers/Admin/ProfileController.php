@@ -12,4 +12,9 @@ class ProfileController extends Controller
     {
         return view('admin.profile.mypage-edit');
     }
+    
+    public function update()
+    {
+        return view('admin.profile.mypage-edit');
+    }
 }
