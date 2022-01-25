@@ -12,7 +12,7 @@ class MovieController extends Controller
 {
   public function add(Request $request)
     {
-      return view('admin/movie/post');
+      return view('admin.movie.post');
     }
     
   public function create(Request $request)
@@ -20,7 +20,7 @@ class MovieController extends Controller
       
       // 以下を追記
       // Varidationを行う
-      $this->validate($request, Post::$rules);
+      //$this->validate($request, Post::$rules);//
 
       $post = new Post;
       $form = $request->all();
@@ -35,16 +35,33 @@ class MovieController extends Controller
 
       // フォームから送信されてきたimageを削除する
       unset($form['movie']);
-​
       // データベースに保存する
       $post->fill($form);
       $post->save();
 
-      return redirect('admin/movie/post');
+      return redirect('admin/movie/posted-movie');
     }
+    
+  public function edit(Request $request)
+  {
+      return view('admin.movie.edit');
+  }
+  
+    public function update(Request $request)
+  {
+      return view('admin.movie.edit');
+  }
+  
     
   public function index(Request $request)
   {
       return view('admin.movie.index');
+  }
+  
+  public function list(Request $request)
+  {
+      return view('
+      
+      ');
   }
 }

@@ -17,4 +17,9 @@ class ProfileController extends Controller
     {
         return view('admin.profile.mypage-edit');
     }
+    
+    public function aboutus()
+    {
+        return view('admin.profile.aboutus');
+    }
 }
