@@ -60,8 +60,7 @@ class MovieController extends Controller
   
   public function list(Request $request)
   {
-      return view('
-      
-      ');
+      return view('admin.movie.posted-movie');
   }
+  
 }
