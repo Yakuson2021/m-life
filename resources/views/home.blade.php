@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    You are logged in !（ログインできました！）
+
+<a href="{{ route('aaa') }}">動画一覧ページへ</a>
+
+
                 </div>
             </div>
         </div>

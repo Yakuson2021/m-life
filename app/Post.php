@@ -10,11 +10,12 @@ class Post extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
+    
+        'user_id' => 'required',
         'title' => 'required',
         'genre' => 'required',
         'musician' => 'required',
         'songtitle' => 'required',
-        'movie' => 'required',
     );
 
 }

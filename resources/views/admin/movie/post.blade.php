@@ -56,6 +56,9 @@
                             <input type="file" class="form-control-file" name="movie">
                         </div>
                     </div>
+                     <input type="hidden" class="form-control-file" name="user_id", value="{{ $user_id }}">
+                    
+
 
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">
