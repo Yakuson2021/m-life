@@ -16,6 +16,7 @@ class Post extends Model
         'genre' => 'required',
         'musician' => 'required',
         'songtitle' => 'required',
+        'movie' => 'required',
     );
 
 }

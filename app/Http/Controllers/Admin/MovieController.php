@@ -40,7 +40,6 @@ class MovieController extends Controller
       // データベースに保存する
       $post->fill($form);
       $post->save();
-
       return redirect('admin/movie/posted-movie');
     }
     
@@ -51,7 +50,7 @@ public function index(Request $request)
           // 検索されたら検索結果を取得する
           $posts = Post::where('title', $cond_title)->get();
       } else {
-          // それ以外はすべてのニュースを取得する
+          // それ以外はすべての投稿を取得する
           $posts = Post::all();
       }
       return view('admin.movie.index', ['posts' => $posts, 'cond_title' => $cond_title]);
