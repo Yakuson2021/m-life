@@ -29,9 +29,10 @@ class MovieController extends Controller
 
 //フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する//
       if (isset($form['movie'])) {
-        $path = $request->file('movie')->store('public/movie');
-        $post->movie = basename($path);
-      } else {
+        $path = $request->file('movie')->store('public/movie');//storeは引数の場所に保存するメソッド//
+      //public/movieに保存したデータの、実際の保存場所を返してそれをPathに代入している
+        $post->movie = basename($path);//代入されたPathからファイル名だけを取り出すメソッドがbasename。　結果としてデータベースに保存されるのがファイル名
+        } else {
           $post->movie = null;
       }
 
@@ -56,20 +57,55 @@ public function index(Request $request)
       return view('admin.movie.index', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
     
-  public function edit(Request $request)
-  {
-      return view('admin.movie.edit');
+  public function detail(Request $request)
+ {
+      // Post Modelからデータを取得する
+      $post = Post::find($request->id);
+      if (empty($post)) {
+        abort(404);    
+      }
+      return view('admin.movie.detail', ['post_form' => $post]);
+  }
+  
+    public function edit(Request $request)
+ {
+      // Post Modelからデータを取得する
+      $post = Post::find($request->id);
+      if (empty($post)) {
+        abort(404);    
+      }
+      return view('admin.movie.edit', ['post_form' => $post]);
   }
   
     public function update(Request $request)
   {
-      return view('admin.movie.edit');
+      // Validationをかける
+      $this->validate($request, Post::$rules);
+      // Post Modelからデータを取得する
+      $post = Post::find($request->id);
+      // 送信されてきたフォームデータを格納する
+      if ($request->remove == 'true') {
+          $post_form['movie'] = null;
+     } elseif ($request->file('image')) {
+          $path = $request->file('movie')->store('public/movie');
+     } else {
+          $post_form['movie'] = $post->movie;
+          
   }
-  
+      unset($post_form['title']);
+      unset($post_form['genre']);
+      unset($post_form['musician']);
+      unset($post_form['songtitle']);
+
+      // 該当するデータを上書きして保存する
+      $post->fill($post_form)->save();
+      return redirect('admin/movie/');
+  }
   
   //投稿した動画の一覧画面を表示させるメソッド//
   public function list(Request $request)
   {
+  
     //$cond_title は何をする機能かを確認しておく//
     //$cond_title = $request->cond_title;////
     //      ($cond_title != '')//
@@ -78,8 +114,8 @@ public function index(Request $request)
     
     //ユーザーIDに紐づく動画であれば動画を取ってくる//
       $posts = Post::where('user_id', Auth::user())->get();
+      
      // 自分の動画一覧画面（admin.movie.posted-movie）に表示する//
       return view('admin.movie.posted-movie', ['posts' => $posts,]);
   }
-  
 }

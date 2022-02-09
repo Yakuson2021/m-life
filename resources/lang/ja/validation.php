@@ -145,10 +145,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
         'title' => 'タイトル',
-        'genre' => '音楽ジャンル'
-        'musician' => 'ミュージシャン'
-        'songtitle' => '曲名'
-        'movie' => '動画ファイル'
+        'genre' => '音楽ジャンル',
+        'musician' => 'ミュージシャン',
+        'songtitle' => '曲名',
+        'movie' => '動画ファイル',
+        ],
 ];

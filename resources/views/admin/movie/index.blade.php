@@ -12,10 +12,7 @@
             <div class="col-md-4">
                 <a href="{{ action('Admin\MovieController@add') }}" role="button" class="btn btn-primary">新規投稿！</a>
             </div>
-                
-            <div class="******">
-                <video src="video.mp4" controls></video>
-            <div class="******">
+
             
             <div class="col-md-8">
                 <form action="{{ action('Admin\MovieController@index') }}" method="get">
@@ -30,7 +27,6 @@
                             <input type="submit" class="btn btn-primary" value="検索">
                         </div>
                     </div>
-                    
                 </form>
             </div>
         </div>
@@ -44,7 +40,8 @@
                                 <th width="10%">ID</th>
                                 <th width="20%">記事名</th>
                                 <th width="20%">曲名</th>
-                                <th width="20%">動画</th>
+                                <th width="40%">動画</th>
+                                <th width="10%">編集</th>
                                 
                             </tr>
                         </thead>
@@ -54,7 +51,15 @@
                                     <th>{{ $post->id }}</th>
                                     <td>{{ \Str::limit($post->title, 100) }}</td>
                                     <td>{{ \Str::limit($post->songtitle, 250) }}</td>
-                                    <td>{{ \Str::limit($post->movie, 250) }}</td>
+                                    <td> 
+                                        <video src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls></video>
+                                    </td>
+                                    {{-- secure_asset→Laravel上のpublicディレクトリの中のPathを指している --}}
+                                    <td> 
+                                    <div>
+                                        <a href="{{ action('Admin\MovieController@detail', ['id' => $post->id]) }}">詳細はコチラ！</a>
+                                    </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
