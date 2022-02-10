@@ -18,5 +18,9 @@ class Post extends Model
         'songtitle' => 'required',
         'movie' => 'required',
     );
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'likes');
+    }
 
 }

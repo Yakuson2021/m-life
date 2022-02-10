@@ -5,15 +5,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Like;
-
-
+use Auth;
 class LikeController extends Controller
 {
     
 public function like($id)
   {
     Like::create([
-      'like_id' => $id,
+      'post_id' => $id,
       'user_id' => Auth::id(),
     ]);
 
@@ -23,7 +22,7 @@ public function like($id)
 
 public function unlike($id)
   {
-    $like = Like::where('like_id', $id)->where('user_id', Auth::id())->first();
+    $like = Like::where('post_id', $id)->where('user_id', Auth::id())->first();
     $like->delete();
 
     session()->flash('success', 'You Unliked the Reply.');
