@@ -8,13 +8,13 @@ class Comment extends Model
 {
     protected $fillable = [
         'comment',
-        'article_id',
+        'post_id',
         'user_id',
     ];
 
     public function article()
     {
-        return $this->belongsTo('App\Article');
+        return $this->belongsTo('App\Post');
     }
 
     public function user()

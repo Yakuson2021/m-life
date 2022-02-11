@@ -29,9 +29,12 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('movie/like/{id}', 'Admin\LikeController@like')->middleware('auth')->name('movie.like');
     Route::get('movie/unlike/{id}', 'Admin\LikeController@unlike')->middleware('auth')->name('movie.unlike');
     
+    //コメント投稿処理
+    Route::post('posts/{comment_id}/comments','CommentsController@store')->middleware('auth');
+    //コメント取消処理
+    Route::get('/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
     
-    
-    
+
     Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
     
