@@ -71,22 +71,16 @@
                     <div class="card-body line-height">
                         <div id="comment-post-{{ $post_form->id }}">
 
-                    　　　<!--ここは参考サイトの//@include('articles.comment_list')//にあたる部分を、下部の「comment_list.blade.php」を貼り付けている-->
+                    　　　<!--ここは参考サイトの「articles.comment_list」にあたる部分を、下部の「comment_list.blade.php」を貼り付けている-->
                     @foreach ($post_form->comments as $comment)
                       <div class="mb-2">
                             <span>
                                 <strong>
-                                    <a class="no-text-decoration black-color" href="{{ route('users.show', ['name' => $comment->user->name]) }}">{{ $comment->user->name }}</a>
+                                    {{ $comment->user->name }}
                                 </strong>
                             </span>
                             <span>{{ $comment->comment }}</span>
-                            @if ($comment->user->id == Auth::id())
-                                <a class="delete-comment" data-remote="true" rel="nofollow" data-method="delete" href="/comments/{{ $comment->id }}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                    </svg>
-                                </a>
-                            @endif
+                       
                       </div>
                     @endforeach
                     　　　<!--下部の「comment_list.blade.php」を貼り付けはここまで-->
@@ -97,7 +91,7 @@
                         <hr>
                         <div class="row actions" id="comment-form-article-{{ $post_form->id }}">
                             
-                            <form class="w-100" id="new_comment" action="/posts/{{ $post_form->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+                            <form class="w-100" id="new_comment" action="/admin/posts/{{ $post_form->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
                                 {{csrf_field()}}
 
                                 <input value="{{ $post_form->id }}" type="hidden" name="post_id" />

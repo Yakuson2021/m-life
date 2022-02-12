@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Comment;
+use Auth;
 class CommentsController extends Controller
 {
     public function __construct()
@@ -14,6 +15,7 @@ class CommentsController extends Controller
     
    public function store(Request $request)
    {
+
        $comment = new Comment();
        $comment->comment = $request->comment;
        $comment->post_id = $request->post_id;
