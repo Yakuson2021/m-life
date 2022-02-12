@@ -67,6 +67,11 @@
                     <a href="{{ route('movie.unlike', ['id' => $post_form->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
                     </div>
                     
+                    <!--コメント削除機能-->
+                    <div>
+                        <a href="{{ action('Admin\CommentsController@destroy', ['id' => $comment->id]) }}">削除</a>
+                    </div>
+                    
                     <!--//ここより参考サイトより抜粋「ビューを作成」<https://qiita.com/NULL_000000/items/7ab02428437481a47ee7#reference>//-->
                     <div class="card-body line-height">
                         <div id="comment-post-{{ $post_form->id }}">
@@ -103,9 +108,14 @@
                                 </div>
                             </form>
                             
+
+
                         </div>
+                        
                     </div>
                     <!--//参考サイトより抜粋　の貼り付け　ここまで-->
+                    
+
                     
             </div>
 @endsection

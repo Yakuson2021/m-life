@@ -22,7 +22,7 @@ class CommentsController extends Controller
        $comment->user_id = Auth::user()->id;
        $comment->save();
 
-       return redirect('/');
+       return redirect()->back();
       
    }
    
@@ -30,7 +30,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::find($request->comment_id);
         $comment->delete();
-        return redirect('/');
+        return redirect()->back();
     }
     
 }
