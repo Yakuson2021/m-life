@@ -96,6 +96,7 @@ public function index(Request $request)
       unset($post_form['genre']);
       unset($post_form['musician']);
       unset($post_form['songtitle']);
+      unset($post_form['postcomment']);
 
       // 該当するデータを上書きして保存する
       $post->fill($post_form)->save();

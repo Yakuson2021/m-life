@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('musician');
             $table->string('songtitle');
             $table->string('movie');
+            $table->string('postcomment')->nullable(); 
             $table->timestamps();
         });
     }

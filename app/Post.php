@@ -17,6 +17,7 @@ class Post extends Model
         'musician' => 'required',
         'songtitle' => 'required',
         'movie' => 'required',
+        'postcomment'
     );
     public function likes()
     {
@@ -28,4 +29,8 @@ class Post extends Model
     return $this->hasMany('App\Comment');
     }
 
+public function tags()
+    {
+        return $this->belongsToMany('App\Tag'); 
+    }
 }

@@ -67,16 +67,17 @@
                     <a href="{{ route('movie.unlike', ['id' => $post_form->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
                     </div>
                     
-                    <!--コメント削除機能-->
-                    <div>
-                        <a href="{{ action('Admin\CommentsController@destroy', ['id' => $comment->id]) }}">削除</a>
-                    </div>
+                    <!--ここに投稿者用のコメントを-->
+                    <p>
+                        {{$post_form->postcomment}}
+                    </p>
+    
                     
                     <!--//ここより参考サイトより抜粋「ビューを作成」<https://qiita.com/NULL_000000/items/7ab02428437481a47ee7#reference>//-->
                     <div class="card-body line-height">
                         <div id="comment-post-{{ $post_form->id }}">
 
-                    　　　<!--ここは参考サイトの「articles.comment_list」にあたる部分を、下部の「comment_list.blade.php」を貼り付けている-->
+                    <!--ここは参考サイトの「articles.comment_list」にあたる部分を、下部の「comment_list.blade.php」を貼り付けている-->
                     @foreach ($post_form->comments as $comment)
                       <div class="mb-2">
                             <span>
@@ -85,10 +86,15 @@
                                 </strong>
                             </span>
                             <span>{{ $comment->comment }}</span>
+                            
+                    <!--コメント削除機能-->
+                    <div>
+                        <a href="{{ action('CommentsController@destroy', ['comment_id' => $comment->id]) }}">削除</a>
+                    </div>                    
                        
                       </div>
                     @endforeach
-                    　　　<!--下部の「comment_list.blade.php」を貼り付けはここまで-->
+                    <!--下部の「comment_list.blade.php」を貼り付けはここまで-->
                     
                     <!--//ここより参考サイトより抜粋　の後半-->
                         </div>
@@ -96,7 +102,7 @@
                         <hr>
                         <div class="row actions" id="comment-form-article-{{ $post_form->id }}">
                             
-                            <form class="w-100" id="new_comment" action="/admin/posts/{{ $post_form->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+                            <form class="w-100" id="new_comment" action="posts/{{ $post_form->id }}/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
                                 {{csrf_field()}}
 
                                 <input value="{{ $post_form->id }}" type="hidden" name="post_id" />

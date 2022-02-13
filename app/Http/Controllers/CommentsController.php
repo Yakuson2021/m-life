@@ -15,14 +15,13 @@ class CommentsController extends Controller
     
    public function store(Request $request)
    {
-
        $comment = new Comment();
        $comment->comment = $request->comment;
        $comment->post_id = $request->post_id;
        $comment->user_id = Auth::user()->id;
        $comment->save();
 
-       return redirect()->back();
+       return redirect('admin/movie/detail?id=' . $comment->post_id);
       
    }
    

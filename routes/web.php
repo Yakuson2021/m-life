@@ -28,12 +28,10 @@ Route::group(['prefix' => 'admin'], function() {
    //2022/2/8,リプライにいいねをする処理を リプライに付けたいいねを解除する処理//
     Route::get('movie/like/{id}', 'Admin\LikeController@like')->middleware('auth')->name('movie.like');
     Route::get('movie/unlike/{id}', 'Admin\LikeController@unlike')->middleware('auth')->name('movie.unlike');
-    
+
     //コメント投稿処理
-    Route::post('posts/{comment_id}/comments','CommentsController@store')->middleware('auth');
+    Route::post('movie/posts/{comment_id}/comments','CommentsController@store')->middleware('auth');
     //コメント取消処理
-    Route::get('/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
-    
 
     Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
@@ -49,6 +47,10 @@ Route::group(['prefix' => 'admin'], function() {
     
     
 });
+
+
+Route::get('/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
+    
 Route::get('/', 'MovieController@index')->name('top');
 Auth::routes();
 
