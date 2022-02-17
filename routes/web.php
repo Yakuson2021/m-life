@@ -31,7 +31,6 @@ Route::group(['prefix' => 'admin'], function() {
 
     //コメント投稿処理
     Route::post('movie/posts/{comment_id}/comments','CommentsController@store')->middleware('auth');
-    //コメント取消処理
 
     Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
@@ -46,9 +45,10 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('movie', 'Admin\MovieController@index')->middleware('auth'); // 追記
     
     
+
 });
 
-
+//コメント取消処理
 Route::get('/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
     
 Route::get('/', 'MovieController@index')->name('top');

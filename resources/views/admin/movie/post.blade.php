@@ -37,7 +37,7 @@
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-2">アーティスト</label>
+                        <label class="col-md-2">ミュージシャン</label>
                         <div class="col-md-10">
                              <input type="text" class="form-control" name="musician" value="{{ old('musician') }}">
                         </div>
@@ -61,9 +61,18 @@
                     <div class="form-group row">
                         <label class="col-md-2">投稿コメント</label>
                         <div class="col-md-10">
-                             <input type="text" class="form-control" name="postcomment" value="{{ old('songtitle') }}">
+                             <input type="text" class="form-control" name="postcomment" value="{{ old('postcomment') }}">
                         </div>
                     </div>
+                    <!--ここからタグ入れの参考サイトを拝借（意味を理解しないといけない）-->
+                    <div class="form-group row">
+                            <label class="col-md-2">タグ</label>
+                        <div class="col-md-10">
+                            <input  id="tags" name="tags" class="form-control {{ $errors->has('tags') ? 'is-invalid' : '' }}" value="{{ old('tags') }}" type="text">
+                       
+                        </div>
+                    </div>
+                    <!--ここまで参考サイト-->
 
                     {{ csrf_field() }}
                     <input type="submit" class="btn btn-primary" value="更新">

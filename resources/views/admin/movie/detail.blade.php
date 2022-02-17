@@ -54,7 +54,21 @@
                             </td>                           
                         </div>
                     </div>
-                        </div>
+                    
+            @foreach ($post_form->tags as $tag)
+            <div class="mb-2">
+            <span>
+            <strong>
+               #{{ $tag->name }}
+            </strong>
+            </span>
+
+            
+            </div>
+            @endforeach
+
+                    
+            </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-md-10">

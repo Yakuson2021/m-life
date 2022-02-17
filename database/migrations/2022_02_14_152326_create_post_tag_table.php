@@ -18,8 +18,8 @@ class CreatePostTagTable extends Migration
             $table->timestamps();
             $table->unsignedInteger('tag_id'); //この行を追加
             $table->unsignedInteger('post_id'); //この行を追加
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade'); //この行を追加
-            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade'); //この行を追加
+            //$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade'); //この行を追加
+            //$table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade'); //この行を追加
         });
     }
 
@@ -30,6 +30,6 @@ class CreatePostTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('posts_tag');
     }
 }

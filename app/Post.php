@@ -11,13 +11,19 @@ class Post extends Model
 
     public static $rules = array(
     
-        'user_id' => 'required',
         'title' => 'required',
         'genre' => 'required',
         'musician' => 'required',
         'songtitle' => 'required',
         'movie' => 'required',
-        'postcomment'
+    );
+    
+       public static $update_rules = array(
+    
+        'title' => 'required',
+        'genre' => 'required',
+        'musician' => 'required',
+        'songtitle' => 'required',
     );
     public function likes()
     {
@@ -29,7 +35,7 @@ class Post extends Model
     return $this->hasMany('App\Comment');
     }
 
-public function tags()
+    public function tags()
     {
         return $this->belongsToMany('App\Tag'); 
     }

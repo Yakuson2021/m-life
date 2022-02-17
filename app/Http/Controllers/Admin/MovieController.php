@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-// 以下を追記することでNews Modelが扱えるようになる
+// 以下を追記することでPost Modelと、TagModelが扱えるようになる
 use App\Post;
+use App\Tag;
 
 
 class MovieController extends Controller
@@ -38,11 +39,32 @@ class MovieController extends Controller
 
       // フォームから送信されてきたimageを削除する
       unset($form['movie']);
+      unset($form['tags']);
       // データベースに保存する
       $post->fill($form);
       $post->save();
+      
+        // #(ハッシュタグ)で始まる単語を取得。結果は、$matchに多次元配列で代入される。
+        preg_match_all('/#([a-zA-z0-9０-９ぁ-んァ-ヶ亜-熙]+)/u', $request->tags, $match);
+        // dd($match);
+        //$match[0]に#(ハッシュタグ)あり、$match[1]に#(ハッシュタグ)なしの結果が入ってくるので、$match[1]で#(ハッシュタグ)なしの結果のみを使います。
+        $tags = [];
+        foreach ($match[1] as $tag) {
+        $record = Tag::firstOrCreate(['name' => $tag]);//firstOrCreateメソッドで、tags_tableのnameカラムに該当のない$tagは新規登録される。
+        $post->tags()->attach($record->id);    
+            
+        array_push($tags, $record);// $recordを配列に追加します(=$tags)
+        };
+
+        // 投稿に紐付けされるタグのidを配列化
+        $tags_id = [];
+        foreach ($tags as $tag) {
+            array_push($tags_id, $tag['id']);
+        };
       return redirect('admin/movie/posted-movie');
     }
+    
+    
     
 public function index(Request $request)
   {
@@ -80,43 +102,45 @@ public function index(Request $request)
     public function update(Request $request)
   {
       // Validationをかける
-      $this->validate($request, Post::$rules);
+      // dd($request->all());←これはチェックのためにプログラムを停止させるために書いたもの　普段使わない
+      $this->validate($request, Post::$update_rules);
       // Post Modelからデータを取得する
       $post = Post::find($request->id);
       // 送信されてきたフォームデータを格納する
+
+      // $post_formが変数であるということを定義する
+      $post_form = $request->all();
+      
       if ($request->remove == 'true') {
           $post_form['movie'] = null;
-     } elseif ($request->file('image')) {
+     } elseif ($request->file('movie')) {
           $path = $request->file('movie')->store('public/movie');
      } else {
           $post_form['movie'] = $post->movie;
           
   }
-      unset($post_form['title']);
-      unset($post_form['genre']);
-      unset($post_form['musician']);
-      unset($post_form['songtitle']);
-      unset($post_form['postcomment']);
-
-      // 該当するデータを上書きして保存する
+      unset($post_form['movie']);
+      unset($post_form['remove']);
+      // ↓該当するデータを上書きして保存する
       $post->fill($post_form)->save();
-      return redirect('admin/movie/');
+      return redirect('admin/movie/posted-movie');
   }
   
   //投稿した動画の一覧画面を表示させるメソッド//
   public function list(Request $request)
   {
-  
-    //$cond_title は何をする機能かを確認しておく//
-    //$cond_title = $request->cond_title;////
-    //      ($cond_title != '')//
-    
-    //ログインしたユーザーIDに紐づく動画を取ってくる//
-    
-    //ユーザーIDに紐づく動画であれば動画を取ってくる//
-      $posts = Post::where('user_id', Auth::user())->get();
-      
+      $cond_title = $request->cond_title;
+      if ($cond_title != '') {
+  // もし検索されたら検索結果を取得する
+  //ユーザーID(自分)に紐づく動画であれば動画を取ってくる//
+  // $posts = Post::where('user_id', Auth::user())->get();←もう一つのやり方
+      $posts = Post::where('user_id', Auth::id())->get();
+      } else {
+  // それ以外はすべてのニュースを取得する
+      $posts = Post::all();
+      }
+
      // 自分の動画一覧画面（admin.movie.posted-movie）に表示する//
-      return view('admin.movie.posted-movie', ['posts' => $posts,]);
+      return view('admin.movie.posted-movie', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
 }
