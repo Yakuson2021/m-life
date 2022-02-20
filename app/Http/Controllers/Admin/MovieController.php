@@ -12,6 +12,7 @@ use App\Tag;
 
 class MovieController extends Controller
 {
+  // public functionとは「このアクションのときはこうするよ」というメソッドの宣言　
   public function add(Request $request)
     {
       $user_id = Auth::id();
@@ -28,11 +29,15 @@ class MovieController extends Controller
       $post = new Post;
       $form = $request->all();
 
-//フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する//
+      //フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する//
       if (isset($form['movie'])) {
-        $path = $request->file('movie')->store('public/movie');//storeは引数の場所に保存するメソッド//
+      //storeは引数の場所に保存するメソッド//
       //public/movieに保存したデータの、実際の保存場所を返してそれをPathに代入している
-        $post->movie = basename($path);//代入されたPathからファイル名だけを取り出すメソッドがbasename。　結果としてデータベースに保存されるのがファイル名
+        $path = $request->file('movie')->store('public/movie');
+        //代入されたPathからファイル名だけを取り出すメソッドがbasename。
+        //結果としてデータベースに保存されるのがファイル名
+        $post->movie = basename($path);
+        
         } else {
           $post->movie = null;
       }
@@ -107,21 +112,23 @@ public function index(Request $request)
       // Post Modelからデータを取得する
       $post = Post::find($request->id);
       // 送信されてきたフォームデータを格納する
-
+      
       // $post_formが変数であるということを定義する
       $post_form = $request->all();
       
-      if ($request->remove == 'true') {
-          $post_form['movie'] = null;
-     } elseif ($request->file('movie')) {
+    
+      if ($request->file('movie')) {
           $path = $request->file('movie')->store('public/movie');
+          $post->movie = basename($path);
      } else {
           $post_form['movie'] = $post->movie;
+          $post->movie = null;
           
   }
       unset($post_form['movie']);
-      unset($post_form['remove']);
+      unset($post_form['_token']);
       // ↓該当するデータを上書きして保存する
+      
       $post->fill($post_form)->save();
       return redirect('admin/movie/posted-movie');
   }
@@ -143,4 +150,14 @@ public function index(Request $request)
      // 自分の動画一覧画面（admin.movie.posted-movie）に表示する//
       return view('admin.movie.posted-movie', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
+  
+  public function delete(Request $request)
+  {
+      // 該当するPost Modelを取得
+      $posts = Post::find($request->id);
+      // 削除する
+      $posts->delete();
+      return redirect('admin/movie/posted-movie');
+  }
+  
 }

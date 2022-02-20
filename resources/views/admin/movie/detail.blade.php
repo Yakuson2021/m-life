@@ -77,9 +77,13 @@
                     </div>
                     
                     <div>
-                    <a href="{{ route('movie.like', ['id' => $post_form->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
-                    <a href="{{ route('movie.unlike', ['id' => $post_form->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
+                     @if($post_form->is_liked_by_auth_user())
+                    　<a href="{{ route('movie.unlike', ['id' => $post_form->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
+                     @else
+                      <a href="{{ route('movie.like', ['id' => $post_form->id]) }}" class="btn btn-success btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
+                     @endif
                     </div>
+                    
                     
                     <!--ここに投稿者用のコメントを-->
                     <p>

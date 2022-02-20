@@ -56,6 +56,11 @@
                                     <div>
                                         <a href="{{ action('Admin\MovieController@edit', ['id' => $post->id]) }}">編集</a>
                                     </div>
+                                    
+                                    <div>
+                                        <a href="{{ action('Admin\MovieController@delete', ['id' => $post->id]) }}">削除</a>
+                                    </div>
+                                        
                                     </td>
                                     <td> 
 

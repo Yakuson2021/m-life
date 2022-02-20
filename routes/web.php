@@ -18,6 +18,7 @@
 Route::group(['prefix' => 'admin'], function() {
     Route::post('movie/post', 'Admin\MovieController@create')->middleware('auth');
     Route::get('movie/post', 'Admin\MovieController@add')->middleware('auth');
+    Route::get('movie/delete', 'Admin\MovieController@delete')->middleware('auth');
         
 
     Route::post('movie/edit', 'Admin\MovieController@update')->middleware('auth');
