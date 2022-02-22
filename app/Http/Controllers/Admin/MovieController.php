@@ -75,8 +75,8 @@ public function index(Request $request)
   {
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
-          // 検索されたら検索結果を取得する
-          $posts = Post::where('title', $cond_title)->get();
+          // 検索されたら検索結果を取得する（!= ''→「''じゃなければ」）
+          $posts = Post::where('songtitle', 'like', "%$cond_title%")->get();
       } else {
           // それ以外はすべての投稿を取得する
           $posts = Post::all();
@@ -122,25 +122,24 @@ public function index(Request $request)
           $post->movie = basename($path);
      } else {
           $post_form['movie'] = $post->movie;
-          $post->movie = null;
+          // $post->movie = null;
           
   }
       unset($post_form['movie']);
       unset($post_form['_token']);
       // ↓該当するデータを上書きして保存する
-      
       $post->fill($post_form)->save();
       return redirect('admin/movie/posted-movie');
   }
   
-  //投稿した動画の一覧画面を表示させるメソッド//
+  //自分の投稿した動画の一覧画面を表示させるメソッド//
   public function list(Request $request)
   {
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
   // もし検索されたら検索結果を取得する
   //ユーザーID(自分)に紐づく動画であれば動画を取ってくる//
-  // $posts = Post::where('user_id', Auth::user())->get();←もう一つのやり方
+      // $posts = Post::where('user_id', Auth::user())->get();←もう一つのやり方
       $posts = Post::where('user_id', Auth::id())->get();
       } else {
   // それ以外はすべてのニュースを取得する
@@ -153,10 +152,21 @@ public function index(Request $request)
   
   public function delete(Request $request)
   {
+    
+    // 2/22、このサイトより拝借中（実装作業中）https://techacademy.jp/magazine/50017#sec2
+      // let result = confirm('削除しますか');
+      // if(result){
+      //   console.log('削除しました');
+      // }else{
+      //   console.log('削除をとりやめました');
+      // }
+      
       // 該当するPost Modelを取得
       $posts = Post::find($request->id);
       // 削除する
       $posts->delete();
+      
+
       return redirect('admin/movie/posted-movie');
   }
   

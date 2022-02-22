@@ -12,19 +12,20 @@
               <h2>投稿した動画</h2>
         ここが自分が投稿した動画一覧ページです
         
-                <form action="{{ action('Admin\MovieController@list') }}" method="post" enctype="multipart/form-data">
-                    <div class="form-group row">
-                        <label class="col-md-2">けんさく</label>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">
-                        </div>
+                <!--<form action="{{ action('Admin\MovieController@list') }}" method="post" enctype="multipart/form-data">-->
+                <!--    <div class="form-group row">-->
+                <!--        <label class="col-md-2">けんさく</label>-->
+                <!--        <div class="col-md-8">-->
+                <!--            <input type="text" class="form-control" name="cond_title" value="{{ $cond_title }}">-->
+                <!--        </div>-->
                         
-                        <div class="col-md-2">
-                            {{ csrf_field() }}
-                            <input type="submit" class="btn btn-primary" value="検索">
-                        </div>
-                    </div>
-                </form>
+                <!--        <div class="col-md-2">-->
+                <!--            {{ csrf_field() }}-->
+                <!--            <input type="submit" class="btn btn-primary" value="検索">-->
+                <!--        </div>-->
+                <!--    </div>-->
+                <!--</form>-->
+                
             </div>
             </div>
             
@@ -60,7 +61,6 @@
                                     <div>
                                         <a href="{{ action('Admin\MovieController@delete', ['id' => $post->id]) }}">削除</a>
                                     </div>
-                                        
                                     </td>
                                     <td> 
 

@@ -9,6 +9,12 @@ use Auth;
 class LikeController extends Controller
 {
     
+/**
+  * 引数のIDに紐づくリプライにLIKEする
+  *
+  * @param $id リプライID
+  * @return \Illuminate\Http\RedirectResponse
+  */
 public function like($id)
   {
     Like::create([
