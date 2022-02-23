@@ -75,7 +75,7 @@ public function index(Request $request)
   {
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
-          // 検索されたら検索結果を取得する（!= ''→「''じゃなければ」）
+          // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」）
           $posts = Post::where('songtitle', 'like', "%$cond_title%")->get();
       } else {
           // それ以外はすべての投稿を取得する
@@ -137,6 +137,7 @@ public function index(Request $request)
   {
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
+  // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」）
   // もし検索されたら検索結果を取得する
   //ユーザーID(自分)に紐づく動画であれば動画を取ってくる//
       // $posts = Post::where('user_id', Auth::user())->get();←もう一つのやり方
