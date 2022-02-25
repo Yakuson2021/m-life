@@ -106,8 +106,6 @@
                             <span>{{ $comment->comment }}</span>
                             
                     <!--コメント削除機能-->
-
-                    
                     <div>
                         @if (Auth::user()->id == $comment->user_id)
                             <a href="{{ action('CommentsController@destroy', ['comment_id' => $comment->id]) }}">削除</a>
