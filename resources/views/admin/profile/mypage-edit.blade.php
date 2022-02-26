@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1>m-life　マイページ編集</h1>
-        マイページを編集する画面
+        登録した情報を確認.編集する画面
             <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
                 
     @if (count($errors) > 0)
@@ -29,4 +29,7 @@
     </div>
         
     </body>
+    
+    <!--↓ほかのカラムもこの下に記載予定※今回のエラー解消後に実装予定-->
+    
 </html>

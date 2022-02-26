@@ -18,7 +18,7 @@ class MovieController extends Controller
       $user_id = Auth::id();
       return view('admin.movie.post',['user_id' => $user_id]);
     }
-    
+
   public function create(Request $request)
     {
       // dd($request);

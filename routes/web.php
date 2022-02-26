@@ -39,9 +39,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('movie/index', 'Admin\MovieController@index')->middleware('auth')->name('aaa');
     Route::get('movie/posted-movie', 'Admin\MovieController@list')->middleware('auth');
     
-    Route::get('profile/create-mypage', 'Admin\ProfileController@create')->middleware('auth');
-    Route::get('profile/create', 'Admin\ProfileController@create')->middleware('auth');
-    
     Route::get('profile/aboutus', 'Admin\ProfileController@aboutus')->middleware('auth');
     Route::get('movie', 'Admin\MovieController@index')->middleware('auth'); // 追記
     
@@ -55,5 +52,5 @@ Route::get('/comments/{comment_id}', 'CommentsController@destroy')->middleware('
 Route::get('/', 'MovieController@index')->name('top');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('auth');;
 
