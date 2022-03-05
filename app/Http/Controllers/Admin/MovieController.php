@@ -106,13 +106,12 @@ public function index(Request $request)
   
     public function update(Request $request)
   {
-      // Validationをかける
       // dd($request->all());←これはチェックのためにプログラムを停止させるために書いたもの　普段使わない
+      // Validationをかける
       $this->validate($request, Post::$update_rules);
       // Post Modelからデータを取得する
       $post = Post::find($request->id);
       // 送信されてきたフォームデータを格納する
-      
       // $post_formが変数であるということを定義する
       $post_form = $request->all();
       
@@ -127,7 +126,6 @@ public function index(Request $request)
   }
       unset($post_form['movie']);
       unset($post_form['_token']);
-      // ↓該当するデータを上書きして保存する
       $post->fill($post_form)->save();
       return redirect('admin/movie/posted-movie');
   }

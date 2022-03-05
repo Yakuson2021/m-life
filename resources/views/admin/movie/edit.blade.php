@@ -1,5 +1,5 @@
 {{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.admin')
+@extends('layouts.app')
 
 {{-- admin.blade.phpの@yield('title')に'm-life動画投稿'を埋め込む --}}
 @section('title', 'm-life動画編集画面')

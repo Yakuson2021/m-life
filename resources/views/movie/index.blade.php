@@ -1,19 +1,25 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
+@section('title', 'm-lifeへようこそ')
+@section('content')
+<div class="container">
+ <div class="row">
+  <div class="col-md-8 mx-auto">
 
-        <title>m-life</title>
-    </head>
-    <body>
-        <h1>m-lifeへようこそ</h1>
-<a href="{{ route('aaa') }}">動画一覧ページへ</a>
+<h1>m-lifeへようこそ</h1>
+ <div>
+  <p><li><a href="{{ route('register') }}">会員登録</a></li></p>
+  <p><li><a href="{{ route('login') }}">ログイン</a></li></p>
+  <p><li><a href="{{ route('check') }}">マイページへ</a></li></p>
+  <p><li><a href="{{ route('list') }}">自分がUPした動画一覧へ</a></li></p>
+    <br>
+ </div>
 
-<a href="{{ route('register') }}">会員登録</a>
+ <div>
+  <p><li><a href="{{ route('index') }}">みんなの投稿動画一覧へ</a></li></p>
+  <p><li><a href="{{ route('userlist') }}">みんなのプロフィール一覧へ</a></li></p>
+ </div>
 
-
-<a href="{{ route('login') }}">ログイン</a>
-    </body>
-</html>
+  </div>
+ </div>
+</div>
+@endsection

@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('movie/post', 'Admin\MovieController@add')->middleware('auth');
     Route::get('movie/delete', 'Admin\MovieController@delete')->middleware('auth');
         
-
+    //自分の投稿記事（動画含む）更新updateの記述部分
     Route::post('movie/edit', 'Admin\MovieController@update')->middleware('auth');
     Route::get('movie/edit', 'Admin\MovieController@edit')->middleware('auth');
 
@@ -32,22 +32,26 @@ Route::group(['prefix' => 'admin'], function() {
 
     //コメント投稿処理
     Route::post('movie/posts/{comment_id}/comments','CommentsController@store')->middleware('auth');
-
+    //コメント取消処理
+    Route::get('movie/posts/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
+    
+    //自分のプロフィール情報更新updateの記述部分
     Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
     
-    Route::get('movie/index', 'Admin\MovieController@index')->middleware('auth')->name('aaa');
-    Route::get('movie/posted-movie', 'Admin\MovieController@list')->middleware('auth');
+    Route::get('profile/mypage', 'Admin\ProfileController@check')->middleware('auth')->name('check');
+    
+    Route::get('movie/index', 'Admin\MovieController@index')->middleware('auth')->name('index');
+    Route::get('movie/posted-movie', 'Admin\MovieController@list')->middleware('auth')->name('list');
     
     Route::get('profile/aboutus', 'Admin\ProfileController@aboutus')->middleware('auth');
     Route::get('movie', 'Admin\MovieController@index')->middleware('auth'); // 追記
     
-    
+     //自分を含む、利用者一覧データ表示機能（3/3追加）
+    Route::get('profile/userlist', 'Admin\ProfileController@userlist')->middleware('auth')->name('userlist');
 
 });
 
-//コメント取消処理
-Route::get('/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
     
 Route::get('/', 'MovieController@index')->name('top');
 Auth::routes();

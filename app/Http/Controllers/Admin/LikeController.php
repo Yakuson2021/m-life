@@ -22,7 +22,8 @@ public function like($id)
       'user_id' => Auth::id(),
     ]);
 
-    session()->flash('success', 'You Liked the Reply.');
+    //↓今回は不要
+    // session()->flash('success', 'You Liked the Reply.');
     return redirect()->back();
   }
 

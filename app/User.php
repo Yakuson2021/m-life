@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','part','genre','introduction'
     ];
 
     /**
@@ -42,8 +42,28 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
     
-    public function comments(): HasMany
+    public function comments()
     {
         return $this->hasMany('App\Comment');
     }
+    
+    public function likes()
+    {
+        return $this->hasManyThrough(Like::class, Post::class);
+    }
+    
+    public function getCommentsAmountNum(){
+        $amount = 0;
+        foreach($this->posts as $post){
+        $count = $post->comments->count();
+        $amount = $amount + $count;    
+        }
+        return $amount;
+    }
+    
+    public static $update_rules = array(
+    
+        'name' => 'required',
+        'email' => 'required',
+    );
 }

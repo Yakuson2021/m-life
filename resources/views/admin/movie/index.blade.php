@@ -1,5 +1,5 @@
 {{-- layouts/admin.blade.phpを読み込む --}}
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('title', 'm-life動画一覧')
 
 @section('content')

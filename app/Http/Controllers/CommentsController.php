@@ -15,7 +15,9 @@ class CommentsController extends Controller
     
    public function store(Request $request)
    {
+       //↓Comment(モデルファイルのclass名とリンクさせているので「new Comment()」、)
        $comment = new Comment();
+       //↓$request->comment;→コメント入力フォームで入力されたコメントフォーム（viewファイルから取ってきている）
        $comment->comment = $request->comment;
        $comment->post_id = $request->post_id;
        $comment->user_id = Auth::user()->id;
