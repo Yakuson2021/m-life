@@ -45,6 +45,9 @@
                                 <th width="15%">動画</th>
                                 <th width="10%">編集</th>
                                 <th width="20%">タグ</th>
+                                <th width="5%">いいね数</th>
+                                <th width="5%">コメント数</th>
+                            
                             </tr>
                         </thead>
                         <tbody>
@@ -63,7 +66,7 @@
                                     </div>
                                     </td>
                                     <td> 
-                                    <!--何を設定すればいいのか?-->
+                                    <!--//1件の投稿(つまり$post)に対するタグの中の1件のタグ-->
                                         @foreach ($post->tags as $tag)
                                             <div class="mb-2">
                                                 <span>
@@ -74,6 +77,23 @@
                                             </div>
                                         @endforeach
                                     
+                                    </td>
+                                    <td>
+                                         <!--//1件の投稿(つまり$post)に対するcomments（「comments」はPostモデルにあるfunctionのcommentsを引っ張ってきている）-->
+                                        @if(isset($post->comments))
+                                    　　{{$post->comments->count()}}
+                                    　　@else
+                                    　　0
+                                    　　@endif
+                                    </td>
+                                         
+                                    <td> 
+                                         <!--//1件の投稿(つまり$post)に対するcomments（「comments」はPostモデルにあるfunctionのlikesを引っ張ってきている）-->
+                                        @if(isset($post->likes))
+                                        {{ $post->likes->count() }}
+                                        @else
+                                        0
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

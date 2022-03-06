@@ -69,8 +69,7 @@ class MovieController extends Controller
       return redirect('admin/movie/posted-movie');
     }
     
-    
-    
+
 public function index(Request $request)
   {
       $cond_title = $request->cond_title;
@@ -115,7 +114,6 @@ public function index(Request $request)
       // $post_formが変数であるということを定義する
       $post_form = $request->all();
       
-    
       if ($request->file('movie')) {
           $path = $request->file('movie')->store('public/movie');
           $post->movie = basename($path);
@@ -169,4 +167,21 @@ public function index(Request $request)
       return redirect('admin/movie/posted-movie');
   }
   
+  //特定の投稿者が投稿した動画一覧表示（3/6追加）
+   public function posted_personal(Request $request)
+  {
+      $cond_title = $request->cond_title;
+      if ($cond_title != '') {
+  // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」）
+  // もし検索されたら検索結果を取得する
+  //渡されたユーザの設定→リンクを実装する部分//
+      $posts = Post::where('user_id', $request->id)->get();
+      } else {
+  // それ以外はすべてのニュースを取得する
+      $posts = Post::all();
+      }
+     // 該当の動画一覧画面（admin.movie.posted_personal）に表示する//
+      return view('admin.movie.posted_personal', ['posts' => $posts, 'cond_title' => $cond_title]);
+  }
+    
 }

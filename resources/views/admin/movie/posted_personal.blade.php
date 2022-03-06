@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 {{-- admin.blade.phpの@yield('title')に'm-life動画投稿'を埋め込む --}}
-@section('title', 'm-life投稿動画一覧')
+@section('title', '動画一覧')
 
 {{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
               <h2>投稿した動画</h2>
-        ここが自分が投稿した動画一覧ページです
+        投稿した動画一覧ページです
         
                 <!--<form action="{{ action('Admin\MovieController@list') }}" method="post" enctype="multipart/form-data">-->
                 <!--    <div class="form-group row">-->
@@ -55,17 +55,17 @@
                                         <video src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls></video>
                                     </td>
                                     {{-- secure_asset→Laravel上のpublicディレクトリの中のPathを指している --}}
+                                    
+                                    @if(Auth::id()==$post->user_id)
                                     <td> 
                                     <div>
                                         <a href="{{ action('Admin\MovieController@edit', ['id' => $post->id]) }}">編集</a>
                                     </div>
-                                    
-                                    
                                     <div>
                                         <a href="{{ action('Admin\MovieController@delete', ['id' => $post->id]) }}">削除</a>
                                     </div>
-                                    
                                     </td>
+                                    @endif
                                     <td> 
 
                                         @foreach ($post->tags as $tag)

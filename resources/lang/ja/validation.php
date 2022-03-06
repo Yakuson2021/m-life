@@ -146,6 +146,8 @@ return [
     */
 
     'attributes' => [
+        'name'  => '名前',
+        'email' => 'メールアドレス',
         'title' => 'タイトル',
         'genre' => '音楽ジャンル',
         'musician' => 'ミュージシャン',

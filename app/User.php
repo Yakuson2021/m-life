@@ -52,6 +52,7 @@ class User extends Authenticatable
         return $this->hasManyThrough(Like::class, Post::class);
     }
     
+ 
     public function getCommentsAmountNum(){
         $amount = 0;
         foreach($this->posts as $post){

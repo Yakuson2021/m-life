@@ -27,7 +27,7 @@
             <th width="15%">担当パート</th>
             <th width="10%">ジャンル</th>
             <th width="30%">自己紹介</th>
-            <th width="5%">いいね</th>
+            <th width="5%">いいね数</th>
             <th width="10%">コメント数</th>
             <th width="5%">投稿動画</th>
 
@@ -42,15 +42,14 @@
                     <td>{{ str_limit($users->genre, 100) }}</td>
                     <td>{{ str_limit($users->introduction, 100) }}</td>
                     <td>
-                    @if(isset($user_form->likes))
-                         {{ $user_form->likes->count() }}
+                    @if(isset($users->likes))
+                         {{ $users->likes->count() }}
                     @else
                          0
                     @endif
                   </td>
-                    
-                    
                     <td>{{$users->getCommentsAmountNum() }}</td>
+                    <td><a href="{{ action('Admin\MovieController@posted_personal', ['id' => $users->id]) }}">動画</a></td>
 
          
                     

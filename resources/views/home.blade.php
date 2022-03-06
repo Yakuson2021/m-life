@@ -16,7 +16,7 @@
 
                     You are logged in !（ログインできました！）
 
-<a href="{{ route('aaa') }}">動画一覧ページへ</a>
+<a href="{{ route('index') }}">動画一覧ページへ</a>
 
 
                 </div>

@@ -35,6 +35,10 @@ Route::group(['prefix' => 'admin'], function() {
     //コメント取消処理
     Route::get('movie/posts/comments/{comment_id}', 'CommentsController@destroy')->middleware('auth');
     
+    //特定の投稿者が投稿した動画一覧表示（3/6追加）
+    Route::get('movie/posted_personal', 'Admin\MovieController@posted_personal')->middleware('auth')->name('personal');
+    
+    
     //自分のプロフィール情報更新updateの記述部分
     Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
@@ -49,6 +53,7 @@ Route::group(['prefix' => 'admin'], function() {
     
      //自分を含む、利用者一覧データ表示機能（3/3追加）
     Route::get('profile/userlist', 'Admin\ProfileController@userlist')->middleware('auth')->name('userlist');
+
 
 });
 
