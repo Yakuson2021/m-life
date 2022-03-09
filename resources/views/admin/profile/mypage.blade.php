@@ -49,7 +49,7 @@
        <!--//もし「いいね」が空だった場合、{}}行目が実行されない→結果としてなにも表示しない-->
         <div class="form-group row">「いいね」数</a>
         <!--//（この人に対してという意味なので）User.php（モデルファイル）のpublic function 〇〇〇の部分が「likes」となっている-->
-        <!--↓「$user_form」はどこから来ている？-->
+        <!--↓「$user_form」はどこから来ている？→このページへ渡すときのProfileControllerのアクションのから-->
          @if($user_form->likes != null)
           {{ $user_form->likes->count() }}
          @endif
@@ -60,8 +60,8 @@
         </div>
         
         <div class="form-group row">「favoriteした」数</a>
-         @if($user_form->user != null)
-          {{ $user_form->user->count() }}
+         @if($user_form->favorite != null)
+          {{ $user_form->favorite->count() }}
          @endif
         </div>
       </div>
