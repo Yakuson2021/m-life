@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
+use App\Favorite;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
@@ -64,7 +65,7 @@ class ProfileController extends Controller
     {
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
-          // 検索されたら検索結果を取得する
+          // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」検索結果を取得する）
           //「$userlist」→これは任意に付ける右辺から代入される変数、Viewファイルに渡し、Viewファイルでは例えば「@foreach($userlist as $users)～とかに使われる」
           //「User」→これは該当するモデルファイルを取得
           $userlist = User::where('name', $cond_title)->get();
@@ -75,4 +76,13 @@ class ProfileController extends Controller
         return view('admin.profile.userlist', ['userlist' => $userlist, 'cond_title' => $cond_title]);
     }
 
+    public function favorite_list(Request $request)
+    {
+        $cond_title = $request->cond_title;
+        $favorite_list= Favorite::where('user_id', Auth::id())->get();
+
+             // お気に入りの動画一覧画面（admin.profile.favorite_list）に表示する//
+      return view('admin.profile.favorite_list', ['favorite_list' => $favorite_list, 'cond_title' => $cond_title]);
+    }
+    
 }

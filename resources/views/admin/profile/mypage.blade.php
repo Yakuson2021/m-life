@@ -31,22 +31,38 @@
         </div>
        
         <div class="form-group row">
+         <a href="{{ action('Admin\ProfileController@edit') }}">マイページの編集はコチラ</a>
+        </div>
+        
+        <div class="form-group row">
          <a href="{{ action('Admin\MovieController@list')}}">投稿した動画はコチラ</a>
         </div>
         
         <div class="form-group row">
-         <a href="{{ action('Admin\ProfileController@edit') }}">編集はコチラ</a>
+         <a href="{{ action('Admin\ProfileController@favorite_list') }}">あなたがお気に入りした動画一覧はコチラ</a>
         </div>
+        
+        <div class="col-md-4">
+         <a href="{{ action('Admin\MovieController@add') }}" role="button" class="btn btn-primary">新規投稿！</a>
+        </div>
+
        <!--//もし「いいね」が空だった場合、{}}行目が実行されない→結果としてなにも表示しない-->
         <div class="form-group row">「いいね」数</a>
         <!--//（この人に対してという意味なので）User.php（モデルファイル）のpublic function 〇〇〇の部分が「likes」となっている-->
+        <!--↓「$user_form」はどこから来ている？-->
          @if($user_form->likes != null)
-         {{ $user_form->likes->count() }}
+          {{ $user_form->likes->count() }}
          @endif
         </div>
         
         <div class="form-group row">「コメント」数</a>
          {{ $amount_coment_counts }}
+        </div>
+        
+        <div class="form-group row">「favoriteした」数</a>
+         @if($user_form->user != null)
+          {{ $user_form->user->count() }}
+         @endif
         </div>
       </div>
      </div>

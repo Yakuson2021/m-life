@@ -17,7 +17,7 @@
 
 Route::group(['prefix' => 'admin'], function() {
     Route::post('movie/post', 'Admin\MovieController@create')->middleware('auth');
-    Route::get('movie/post', 'Admin\MovieController@add')->middleware('auth');
+    Route::get('movie/post', 'Admin\MovieController@add')->middleware('auth')->name('movie.post');
     Route::get('movie/delete', 'Admin\MovieController@delete')->middleware('auth');
         
     //自分の投稿記事（動画含む）更新updateの記述部分
@@ -29,6 +29,13 @@ Route::group(['prefix' => 'admin'], function() {
    //2022/2/8,リプライにいいねをする処理を リプライに付けたいいねを解除する処理//
     Route::get('movie/like/{id}', 'Admin\LikeController@like')->middleware('auth')->name('movie.like');
     Route::get('movie/unlike/{id}', 'Admin\LikeController@unlike')->middleware('auth')->name('movie.unlike');
+    
+   //2022/3/8,お気に入りする処理を 付けたお気に入りを解除する処理//
+    Route::get('movie/favorite/{id}', 'Admin\FavoriteController@favorite')->middleware('auth')->name('movie.favorite');
+    Route::get('movie/unfavorite/{id}', 'Admin\FavoriteController@unfavorite')->middleware('auth')->name('movie.unfavorite');
+    
+    // 2022/3/8,お気に入りした動画を動画一覧表示する処理//
+    Route::get('movie/favorite_list', 'Admin\ProfileController@favorite_list')->middleware('auth')->name('favorite_list');
 
     //コメント投稿処理
     Route::post('movie/posts/{comment_id}/comments','CommentsController@store')->middleware('auth');
@@ -40,7 +47,7 @@ Route::group(['prefix' => 'admin'], function() {
     
     
     //自分のプロフィール情報更新updateの記述部分
-    Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth');
+    Route::post('profile/mypage-edit', 'Admin\ProfileController@update')->middleware('auth')->name('mypage-edit');
     Route::get('profile/mypage-edit', 'Admin\ProfileController@edit')->middleware('auth');
     
     Route::get('profile/mypage', 'Admin\ProfileController@check')->middleware('auth')->name('check');

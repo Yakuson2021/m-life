@@ -49,7 +49,7 @@ class User extends Authenticatable
     
     public function likes()
     {
-        return $this->hasManyThrough(Like::class, Post::class);
+        return $this->belongsToMany('App\Post', 'favorites', 'user_id', 'post_id');
     }
     
  

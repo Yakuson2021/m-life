@@ -4528,6 +4528,7 @@ input[type=button].btn-block {
 }
 
 .navbar {
+  color: #fff !important;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -4546,6 +4547,7 @@ input[type=button].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+
 }
 
 .navbar-brand {

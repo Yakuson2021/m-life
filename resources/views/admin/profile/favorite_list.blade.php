@@ -1,22 +1,21 @@
 {{-- layouts/app.blade.phpを読み込む --}}
 @extends('layouts.app')
-@section('title', 'm-life動画一覧')
+@section('title', 'お気に入り動画一覧')
 
 @section('content')
     <div class="container">
         <div class="row">
-            <h2>m-life動画一覧ページ覧</h2>
-            ここに全員が投稿した動画が一覧できるページです
+            <h2>m-lifeお気に入り動画一覧</h2>
+            あなたがお気に入りに入れた動画が一覧できるページです
         </div>
         <div class="row">
             <div class="col-md-4">
-                <a href="{{ action('Admin\MovieController@add') }}" role="button" class="btn btn-primary">新規投稿！</a>
+                <a href="{{ action('Admin\ProfileController@check') }}" role="button" class="btn btn-primary">マイページへ戻る</a>
             </div>
 
             
             <div class="col-md-8">
-                <!--↓このコードは何を意味しているか？-->
-                <form action="{{ action('Admin\MovieController@index') }}" method="get">
+                <form action="{{ action('Admin\ProfileController@favorite_list') }}" method="get">
                     
                     <div class="form-group row">
                         <label class="col-md-2">曲名を検索</label>
@@ -51,7 +50,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $post)
+                            @foreach(Auth::user()->likes as $post)
                                 <tr>
                                     <th>{{ $post->id }}</th>
                                     <td>{{ \Str::limit($post->title, 100) }}</td>

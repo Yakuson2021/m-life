@@ -77,6 +77,7 @@
                     </div>
                     
                     <div>
+                        <!--↓->の左隣の変数は$post_formはPostモデルのインスタンス化　post_formが->を持っている、という意味、つまりPostモデルのfunctionが由来-->
                      @if($post_form->is_liked_by_auth_user())
                     　<a href="{{ route('movie.unlike', ['id' => $post_form->id]) }}" class="btn btn-secondary btn-sm">いいね<span class="badge">{{ $post_form->likes->count() }}</span></a>
                      @else
@@ -84,6 +85,14 @@
                      @endif
                     </div>
                     
+                    <div>
+
+                     @if($post_form->is_favorited_by_auth_user())
+                    　<a href="{{ route('movie.unfavorite', ['id' => $post_form->id]) }}" class="btn btn-secondary btn-sm">お気に入り</a>
+                     @else
+                      <a href="{{ route('movie.favorite', ['id' => $post_form->id]) }}" class="btn btn-success btn-sm">お気に入り</a>
+                     @endif
+                    </div>
                     
                     <!--ここに投稿者用のコメントを-->
                     <p>

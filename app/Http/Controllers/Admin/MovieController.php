@@ -132,16 +132,19 @@ public function index(Request $request)
   public function list(Request $request)
   {
       $cond_title = $request->cond_title;
-      if ($cond_title != '') {
-  // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」）
+  // if ($cond_title != '') {
+  // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」検索結果を取得する）
   // もし検索されたら検索結果を取得する
   //ユーザーID(自分)に紐づく動画であれば動画を取ってくる//
       // $posts = Post::where('user_id', Auth::user())->get();←もう一つのやり方
+      
+      //↓3/7更新：条件分岐させては上記の仕様で全員のデータが出るので、このコードはこれで（特定させるコード）
       $posts = Post::where('user_id', Auth::id())->get();
-      } else {
-  // それ以外はすべてのニュースを取得する
-      $posts = Post::all();
-      }
+      
+  //     } else {
+  // // それ以外はすべてのニュースを取得する
+  //     $posts = Post::all();
+  //     }
 
      // 自分の動画一覧画面（admin.movie.posted-movie）に表示する//
       return view('admin.movie.posted-movie', ['posts' => $posts, 'cond_title' => $cond_title]);
@@ -171,16 +174,17 @@ public function index(Request $request)
    public function posted_personal(Request $request)
   {
       $cond_title = $request->cond_title;
-      if ($cond_title != '') {
-  // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」）
-  // もし検索されたら検索結果を取得する
+      // if ($cond_title != '') {
+  // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」検索結果を取得する）
   //渡されたユーザの設定→リンクを実装する部分//
+  
+  //↓3/7更新：条件分岐させては上記の仕様で全員のデータが出るので、このコードはこれで（特定させるコード）
       $posts = Post::where('user_id', $request->id)->get();
-      } else {
-  // それ以外はすべてのニュースを取得する
-      $posts = Post::all();
-      }
-     // 該当の動画一覧画面（admin.movie.posted_personal）に表示する//
+  //     } else {
+  // // それ以外はすべてのニュースを取得する
+  //     $posts = Post::all();
+  //     }
+  // 該当の動画一覧画面（admin.movie.posted_personal）に表示する//
       return view('admin.movie.posted_personal', ['posts' => $posts, 'cond_title' => $cond_title]);
   }
     

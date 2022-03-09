@@ -22,21 +22,21 @@
       <table class="table table-striped table-hover">
        <thead>
         <tr>
-            <th width="5%">ID</th>
+            <!--<th width="5%">ID</th>-->
             <th width="15%">名前</th>
             <th width="15%">担当パート</th>
             <th width="10%">ジャンル</th>
             <th width="30%">自己紹介</th>
-            <th width="5%">いいね数</th>
+            <th width="10%">いいね数</th>
             <th width="10%">コメント数</th>
-            <th width="5%">投稿動画</th>
+            <th width="10%">投稿動画</th>
 
         </tr>
        </thead>
         <tbody>
             @foreach($userlist as $users)
                 <tr>
-                    <th>{{ $users->id }}</th>
+                    <!--<th>{{ $users->id }}</th>-->
                     <td>{{ str_limit($users->name, 100) }}</td>
                     <td>{{ str_limit($users->part, 100) }}</td>
                     <td>{{ str_limit($users->genre, 100) }}</td>

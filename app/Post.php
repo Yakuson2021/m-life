@@ -41,6 +41,26 @@ class Post extends Model
     
     }
     
+    public function is_favorited_by_auth_user()
+    {
+    $id = Auth::id();
+    $favorites = array();
+    foreach($this->favorites as $favorite) {
+    array_push($favorites, $favorite->user_id);
+    }
+      if (in_array($id, $favorites)) {
+      return true;
+    } else {
+      return false;
+    }
+    
+    }
+    
+     public function favorites()
+    {
+        return $this->hasMany(Favorite::class, 'post_id');
+    }
+    
     public function likes()
     {
         return $this->hasMany(Like::class, 'post_id');
