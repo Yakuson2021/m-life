@@ -15,6 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+     //「$fillable」はホワイトリストとして利用できる。
+     //指定したカラムに対してのみ、 create()やupdate() 、fill()が可能になる。
     protected $fillable = [
         'name', 'email', 'password','part','genre','introduction'
     ];
@@ -49,8 +51,14 @@ class User extends Authenticatable
     
     public function likes()
     {
+        return $this->belongsToMany('App\Post', 'likes', 'user_id', 'post_id');
+    }
+    
+    public function favorites()
+    {
         return $this->belongsToMany('App\Post', 'favorites', 'user_id', 'post_id');
     }
+    
     
  
     public function getCommentsAmountNum(){

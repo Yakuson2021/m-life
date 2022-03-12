@@ -39,6 +39,7 @@
                                 <th width="20%">記事名</th>
                                 <th width="20%">曲名</th>
                                 <th width="15%">動画</th>
+                                <th width="10%">詳細</th>
                                 <th width="10%">編集</th>
                                 <th width="20%">タグ</th>
                                 <th width="5%">いいね数</th>
@@ -56,6 +57,13 @@
                                     </td>
                                     {{-- secure_asset→Laravel上のpublicディレクトリの中のPathを指している --}}
                                     
+                                    <td> 
+                                        <div>
+                                        　<a href="{{ action('Admin\MovieController@detail', ['id' => $post->id]) }}">動画詳細</a>
+                                        </div>
+                                    </td> 
+                                    
+
                                     @if(Auth::id()==$post->user_id)
                                     <td> 
                                     <div>
@@ -65,7 +73,10 @@
                                         <a href="{{ action('Admin\MovieController@delete', ['id' => $post->id]) }}">削除</a>
                                     </div>
                                     </td>
+                                    
                                     @endif
+
+                                    
                                     <td> 
 
                                         @foreach ($post->tags as $tag)
@@ -79,6 +90,7 @@
                                         @endforeach
                                     
                                     </td>
+                                    
                                     <td>
                                         @if(isset($post->likes))
                                         {{ $post->likes->count() }}

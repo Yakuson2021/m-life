@@ -588,7 +588,7 @@ pre code {
 @media (min-width: 576px) {
   .container-sm,
   .container {
-    max-width: 540px;
+    max-width: 800px;
   }
 }
 
@@ -4555,7 +4555,7 @@ input[type=button].btn-block {
   padding-top: 0.32rem;
   padding-bottom: 0.32rem;
   margin-right: 1rem;
-  font-size: 1.125rem;
+  font-size: 1.7rem;
   line-height: inherit;
   white-space: nowrap;
 }

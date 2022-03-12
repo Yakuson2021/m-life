@@ -34,25 +34,28 @@
         </tr>
        </thead>
         <tbody>
-            @foreach($userlist as $users)
+            <!--本来単数形にすべき-->
+            @foreach($userlist as $user)
                 <tr>
-                    <!--<th>{{ $users->id }}</th>-->
-                    <td>{{ str_limit($users->name, 100) }}</td>
-                    <td>{{ str_limit($users->part, 100) }}</td>
-                    <td>{{ str_limit($users->genre, 100) }}</td>
-                    <td>{{ str_limit($users->introduction, 100) }}</td>
-                    <td>
-                    @if(isset($users->likes))
-                         {{ $users->likes->count() }}
-                    @else
-                         0
-                    @endif
-                  </td>
-                    <td>{{$users->getCommentsAmountNum() }}</td>
-                    <td><a href="{{ action('Admin\MovieController@posted_personal', ['id' => $users->id]) }}">動画</a></td>
-
-         
-                    
+                    <!--<th>{{ $user->id }}</th>-->
+                    <td>{{ str_limit($user->name, 100) }}</td>
+                    <td>{{ str_limit($user->part, 100) }}</td>
+                    <td>{{ str_limit($user->genre, 100) }}</td>
+                    <td>{{ str_limit($user->introduction, 100) }}</td>
+                   @php
+                     $like_count = 0;
+                     $posts = $user->posts;
+                   @endphp  
+                     @foreach($posts as $post)
+                      @php
+                       $like_count += $post->likes()->get()->count(); 
+                      @endphp
+                     @endforeach
+                     <td>
+                       {{ $like_count}}
+                     </td>
+                    <td>{{$user->getCommentsAmountNum() }}</td>
+                    <td><a href="{{ action('Admin\MovieController@posted_personal', ['id' => $user->id]) }}">動画</a></td>
                 </tr>
             @endforeach
         </tbody>

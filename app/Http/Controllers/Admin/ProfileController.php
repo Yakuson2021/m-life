@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
 use App\Favorite;
+use App\Like;
 use Carbon\Carbon;
 
 class ProfileController extends Controller
@@ -22,8 +23,27 @@ class ProfileController extends Controller
       $count = $post->comments->count();
       $amount_coment_counts = $amount_coment_counts + $count;
             }
-      //, ['user_form' => $user]);→これは.mypageに行くときに、この「user_form」で使うという意味
-        return view('admin.profile.mypage', ['user_form' => $user,'amount_coment_counts' => $amount_coment_counts]);
+         
+    //3/10、自分が投稿した記事に「いいね」がついた数を表示したい
+    //ログインユーザが投稿した投稿一覧を取得
+      $user = Auth::user();
+      $posts = $user->posts;
+      
+    //   dd($posts);
+      
+      $posts_likes_count = 0;
+      foreach($posts as $post){
+      //likesテーブルからpost_idで検索して、件数を取得する
+      //$posts_likes_count += Like::where('post_id',*** )->count(); 
+        $posts_likes_count += $post->likes()->get()->count();
+          
+      }
+    //   dd($posts_likes_count);
+    //   }
+    //書き終わったら、return viewに[]を追加する
+    //ViewファイルにはgetCommentsAmountNum　のようなcount関数を貼り付けて渡す
+    //, ['user_form' => $user]);→これは.mypageに行くときに、この「user_form」で使うという意味
+        return view('admin.profile.mypage', ['user_form' => $user,'amount_coment_counts' => $amount_coment_counts,'posts_likes_count'=> $posts_likes_count]);
  }
     public function edit()
     {
@@ -66,7 +86,7 @@ class ProfileController extends Controller
       $cond_title = $request->cond_title;
       if ($cond_title != '') {
           // 検索されたら検索結果を取得する（「!= ''」→「''じゃなければ」検索結果を取得する）
-          //「$userlist」→これは任意に付ける右辺から代入される変数、Viewファイルに渡し、Viewファイルでは例えば「@foreach($userlist as $users)～とかに使われる」
+          //「$userlist」→これは任意に付ける右辺から代入される変数、Viewファイルに渡し、Viewファイルでは例えば「@each($userlist as $users)～とかに使われる」
           //「User」→これは該当するモデルファイルを取得
           $userlist = User::where('name', $cond_title)->get();
     } else {

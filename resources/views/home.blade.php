@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">ログイン完了</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,9 +14,10 @@
                         </div>
                     @endif
 
-                    You are logged in !（ログインできました！）
+                    すでにログイン済みです<p><p></p></p>
 
-<a href="{{ route('check') }}">マイページへ</a>
+<a href="{{ route('check') }}">マイページへ</a><p></p>
+<a href="{{ route('top') }}">サイトトップへ</a>
 
 
                 </div>

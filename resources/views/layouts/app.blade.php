@@ -2,6 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
+    <!--↓画面幅を小さくしたとき、たとえばスマートフォンで見たときなどに文字や画像の大きさを調整してくれるタグです。-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
@@ -9,8 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- secure_asset「js/app.js」は、publicディレクトリのパスを返す関数のことです。 要するに、「/js/app.js」というパスを生成します。-->
+    <script src="{{ secure_asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -23,7 +24,7 @@
 <body>
     <div id="app">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">M-LIFE</a>
+    <a class="navbar-brand" href="{{ route('top') }}">M-LIFE</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -53,9 +54,6 @@
         </li>
 
       </ul>
-      <form class="form-inline my-2 my-md-0">
-        <input class="form-control" type="search" placeholder="検索..." aria-label="検索...">
-      </form>
 
         <!-- 3/9追記　Right Side Of Navbar -->
         <ul class="navbar-nav ml-auto">
@@ -63,14 +61,14 @@
         <!-- Authentication Links -->
         {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
         @guest
-        <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+        <li><a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a></li>
+        <li><a class="nav-link" href="{{ route('register') }}">アカウント登録</a></li>
         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
         @else
         <li class="nav-item dropdown">
         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }} <span class="caret"></span>
         </a>
-        
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="{{ route('logout') }}"
                onclick="event.preventDefault();
@@ -90,9 +88,12 @@
     
   </nav>
         <main class="py-4">
+          
+            {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
             @yield('content')
+            
         </main>
+        
     </div>
 </body>
-
 </html>

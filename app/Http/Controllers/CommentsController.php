@@ -29,6 +29,7 @@ class CommentsController extends Controller
    
     public function destroy(Request $request)
     {
+        $comment = new Comment();
         if (Auth::user()->id == $comment->user_id);
         {                
         $comment = Comment::find($request->comment_id);
