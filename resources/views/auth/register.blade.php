@@ -25,6 +25,13 @@
                                 @enderror
                             </div>
                         </div>
+                        
+                        <select>
+                                      @foreach(config('pref') as $index => $name)
+                                        <option value="{{ $index }}">$name</option>
+                                      @endforeach
+                                    </select>
+                        
 
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right"><font color="red">＊</font>{{ __('messages.E-Mail Address') }}</label>
