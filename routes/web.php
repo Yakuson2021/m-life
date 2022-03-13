@@ -61,10 +61,8 @@ Route::group(['prefix' => 'admin'], function() {
      //自分を含む、利用者一覧データ表示機能（3/3追加）
     Route::get('profile/userlist', 'Admin\ProfileController@userlist')->middleware('auth')->name('userlist');
 
-
 });
 
-    
 Route::get('/', 'MovieController@index')->name('top');
 Auth::routes();
 

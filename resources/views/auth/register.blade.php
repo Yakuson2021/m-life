@@ -26,13 +26,6 @@
                             </div>
                         </div>
                         
-                        <select>
-                                      @foreach(config('pref') as $index => $name)
-                                        <option value="{{ $index }}">$name</option>
-                                      @endforeach
-                                    </select>
-                        
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right"><font color="red">＊</font>{{ __('messages.E-Mail Address') }}</label>
 
@@ -72,10 +65,13 @@
                         <!--ここから追加したいカラム　担当パート-->
                         <div class="form-group row">
                         　<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Part') }}</label>
-                        
+                                <select name="part">
+                                    @foreach(config('pref') as $index => $name)
+                                    <option value="{{ $index }}" @if(old('_pref') == $index) selected @endif>{{$name}}</option>
+                                    @endforeach
+                                </select>
                         　<div class="col-md-6">
-                        　<input id="name" type="text" class="form-control @error('part') is-invalid @enderror" name="part" value="{{ old('part') }}" required autocomplete="part" autofocus>
-                        
+
                         @error('part')
                         　<span class="invalid-feedback" role="alert">
                        　　 <strong>{{ $message }}</strong>
@@ -84,18 +80,20 @@
                         　</div>
                         </div>
                         
-                        <!--ここから追加したいカラム　ジャンル-->
+                        <!--ここから追加したいカラム　音楽ジャンル-->
                         <div class="form-group row">
                         　<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Genre') }}</label>
-                        
+                                <select name="part">
+                                    @foreach(config('pref') as $index => $name)
+                                    <option value="{{ $index }}" @if(old('_pref') == $index) selected @endif>{{$name}}</option>
+                                    @endforeach
+                                </select>
                         　<div class="col-md-6">
-                        　<input id="name" type="text" class="form-control @error('genre') is-invalid @enderror" name="genre" value="{{ old('genre') }}" required autocomplete="genre" autofocus>
-                        
-                        @error('genre')
-                        　<span class="invalid-feedback" role="alert">
-                       　　 <strong>{{ $message }}</strong>
-                        　</span>
-                        @enderror
+                            @error('part')
+                        　  <span class="invalid-feedback" role="alert">
+                       　　      <strong>{{ $message }}</strong>
+                        　  </span>
+                            @enderror
                         　</div>
                         </div>
                         
@@ -103,7 +101,7 @@
                         <div class="form-group row">
                         　<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Introduction') }}</label>
                         
-                        　<div class="col-md-6">
+                        　<div class="col-md-0314">
                         　<input id="name" type="text" class="form-control @error('introduction') is-invalid @enderror" name="introduction" value="{{ old('introduction') }}" required autocomplete="introduction" autofocus>
                         
                         @error('introduction')
