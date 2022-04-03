@@ -588,7 +588,7 @@ pre code {
 @media (min-width: 576px) {
   .container-sm,
   .container {
-    max-width: 800px;
+    max-width: 540px;
   }
 }
 
@@ -4448,6 +4448,7 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  color: #fff !important;
 }
 
 .nav-link:hover,
@@ -4528,13 +4529,12 @@ input[type=button].btn-block {
 }
 
 .navbar {
-  color: #fff !important;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .navbar .container,
@@ -4547,7 +4547,6 @@ input[type=button].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-
 }
 
 .navbar-brand {
@@ -4555,7 +4554,7 @@ input[type=button].btn-block {
   padding-top: 0.32rem;
   padding-bottom: 0.32rem;
   margin-right: 1rem;
-  font-size: 1.7rem;
+  font-size: 1.125rem;
   line-height: inherit;
   white-space: nowrap;
 }
@@ -10962,18 +10961,9 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
-  .col-md-0314{
-    width: 100%;
-    padding: 10px;
-    height: 200px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    
-  }
-  
+}
 
+.custom {
+  color: #fff !important;
 }
 

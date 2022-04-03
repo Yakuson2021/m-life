@@ -3,10 +3,9 @@
 @section('title', 'お気に入り動画一覧')
 
 @section('content')
-    <div class="container">
+<div class="container">
+    <h1>お気に入り動画一覧ページ</h1>
         <div class="row">
-            <h2>m-lifeお気に入り動画一覧</h2>
-            あなたがお気に入りに入れた動画が一覧できるページです
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -38,21 +37,21 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
-                                <th width="20%">記事名</th>
+                                <!--<th width="10%">ID</th>-->
+                                <th width="15%">記事名</th>
                                 <th width="20%">曲名</th>
                                 <th width="15%">動画</th>
                                 <th width="10%">編集</th>
                                 <th width="20%">タグ</th>
-                                <th width="5%">いいね数</th>
-                                <th width="5%">コメント数</th>
+                                <th width="10%">いいね数</th>
+                                <th width="10%">コメント数</th>
                             
                             </tr>
                         </thead>
                         <tbody>
                             @foreach(Auth::user()->likes as $post)
                                 <tr>
-                                    <th>{{ $post->id }}</th>
+                                    <!--<th>{{ $post->id }}</th>-->
                                     <td>{{ \Str::limit($post->title, 100) }}</td>
                                     <td>{{ \Str::limit($post->songtitle, 250) }}</td>
                                     <td> 
@@ -98,13 +97,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
-
-
                 </div>
             </div>
         </div>
-        
-        
     </div>
 @endsection

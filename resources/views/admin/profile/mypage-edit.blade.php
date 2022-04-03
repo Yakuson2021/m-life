@@ -4,10 +4,11 @@
 @section('title', 'm-lifeマイページ編集')
 {{-- admin.blade.phpの@yield('content')に以下のタグを埋め込む --}}
 @section('content')
-    <div class="container">
-     <div class="row">
-      <div class="col-md-8 mx-auto">
-        <h2>m-lifeマイページ編集画面</h2>
+<div class="container">
+    <h1>マイページ編集画面</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8 mx-auto">
+
         
         <form action="{{ action('Admin\ProfileController@update') }}" method="post" enctype="multipart/form-data">
          
@@ -36,21 +37,32 @@
            <div class="form-group row">
             　<label class="col-md-2">担当パート</label>
             　<div class="col-md-10">
-            　　<input type="text" class="form-control" name="part" value="{{ $user_form->part }}">
+            　　
+                <select name="part">
+                    @foreach(config('part') as $index => $name)
+                    <option value="{{ $index }}" @if(old('part',$user_form->part) == $index) selected @endif>{{$name}}</option>
+                    @endforeach
+                </select>
+            　　
             　</div>
            </div>
+           
           
            <div class="form-group row">
             　<label class="col-md-2">ジャンル</label>
             　<div class="col-md-10">
-            　　<input type="text" class="form-control" name="genre" value="{{ $user_form->genre }}">
-            　</div class="col-md-10">
+                <select name="genre">
+                    @foreach(config('genre') as $index => $name)
+                    <option value="{{ $index }}" @if(old('genre',$user_form->genre) == $index) selected @endif>{{$name}}</option>
+                    @endforeach
+                </select>
+            　</div>
            </div>
           
            <div class="form-group row">
             　<label class="col-md-2">自己紹介</label>
             　<div class="col-md-10">
-            　　<input type="text" class="form-control" name="introduction" value="{{ $user_form->introduction }}">
+            　　<textarea rows="4" class="form-control" name="introduction" value="{{ $user_form->introduction }}"></textarea>
            　　 </div>
            </div>
 

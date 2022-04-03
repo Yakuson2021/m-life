@@ -29,21 +29,21 @@ class MovieController extends Controller
       $post = new Post;
       $form = $request->all();
 
-      //フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する//
-      if (isset($form['movie'])) {
-      //storeは引数の場所に保存するメソッド//
-      //public/movieに保存したデータの、実際の保存場所を返してそれをPathに代入している
-        $path = $request->file('movie')->store('public/movie');
-        //代入されたPathからファイル名だけを取り出すメソッドがbasename。
-        //結果としてデータベースに保存されるのがファイル名
-        $post->movie = basename($path);
+      // //フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する//
+      // if (isset($form['movie'])) {
+      // //storeは引数の場所に保存するメソッド//
+      // //public/movieに保存したデータの、実際の保存場所を返してそれをPathに代入している
+      //   $path = $request->file('movie')->store('public/movie');
+      //   //代入されたPathからファイル名だけを取り出すメソッドがbasename。
+      //   //結果としてデータベースに保存されるのがファイル名
+      //   $post->movie = basename($path);
         
-        } else {
-          $post->movie = null;
-      }
+      //   } else {
+      //     $post->movie = null;
+      // }
 
       // フォームから送信されてきたimageを削除する
-      unset($form['movie']);
+      // unset($form['movie']);
       unset($form['tags']);
       // データベースに保存する
       $post->fill($form);

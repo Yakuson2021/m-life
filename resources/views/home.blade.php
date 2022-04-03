@@ -17,7 +17,6 @@
                     すでにログイン済みです<p><p></p></p>
 
 <a href="{{ route('check') }}">マイページへ</a><p></p>
-<a href="{{ route('top') }}">サイトトップへ</a>
 
 
                 </div>

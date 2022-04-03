@@ -65,26 +65,25 @@
                         <!--ここから追加したいカラム　担当パート-->
                         <div class="form-group row">
                         　<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Part') }}</label>
-                                <select name="part">
-                                    @foreach(config('pref') as $index => $name)
-                                    <option value="{{ $index }}" @if(old('_pref') == $index) selected @endif>{{$name}}</option>
-                                    @endforeach
-                                </select>
+                            <select name="part">
+                                @foreach(config('part') as $index => $name)
+                                <option value="{{ $index }}" @if(old('_pref') == $index) selected @endif>{{$name}}</option>
+                                @endforeach
+                            </select>
                         　<div class="col-md-6">
-
-                        @error('part')
-                        　<span class="invalid-feedback" role="alert">
-                       　　 <strong>{{ $message }}</strong>
-                        　</span>
-                        @enderror
+                                @error('part')
+                        　  <span class="invalid-feedback" role="alert">
+                       　　      <strong>{{ $message }}</strong>
+                        　  </span>
+                                @enderror
                         　</div>
                         </div>
                         
                         <!--ここから追加したいカラム　音楽ジャンル-->
                         <div class="form-group row">
                         　<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Genre') }}</label>
-                                <select name="part">
-                                    @foreach(config('pref') as $index => $name)
+                                <select name="genre">
+                                    @foreach(config('genre') as $index => $name)
                                     <option value="{{ $index }}" @if(old('_pref') == $index) selected @endif>{{$name}}</option>
                                     @endforeach
                                 </select>
@@ -100,10 +99,10 @@
                         <!--ここから追加したいカラム　一言自己アピール-->
                         <div class="form-group row">
                         　<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('messages.Introduction') }}</label>
-                        
-                        　<div class="col-md-0314">
-                        　<input id="name" type="text" class="form-control @error('introduction') is-invalid @enderror" name="introduction" value="{{ old('introduction') }}" required autocomplete="introduction" autofocus>
-                        
+                        <div class="col-md-8">
+
+                          <textarea rows="4" class="form-control @error('introduction') is-invalid @enderror"  name="introduction"  value="{{ old('introduction') }}" required autocomplete="introduction" autofocus placeholder="一言メッセージを"></textarea>
+
                         @error('introduction')
                         　<span class="invalid-feedback" role="alert">
                        　　 <strong>{{ $message }}</strong>

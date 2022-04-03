@@ -1,13 +1,12 @@
 {{-- layouts/app.blade.phpを読み込む --}}
 @extends('layouts.app')
-@section('title', 'm-life動画一覧')
+@section('title', '全員が投稿した動画一覧ページ')
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <h2>m-life動画一覧ページ覧</h2>
-            ここに全員が投稿した動画が一覧できるページです
-        </div>
+        <h1>全員が投稿した動画一覧ページ</h1>
+            <div class="row">
+            </div>
         <div class="row">
             <div class="col-md-4">
                 <a href="{{ action('Admin\MovieController@add') }}" role="button" class="btn btn-primary">新規投稿！</a>
@@ -39,14 +38,14 @@
                     <table class="table table-dark">
                         <thead>
                             <tr>
-                                <th width="10%">ID</th>
-                                <th width="20%">記事名</th>
-                                <th width="20%">曲名</th>
+                                <!--<th width="10%">ID</th>-->
+                                <th width="15%">記事名</th>
+                                <th width="15%">曲名</th>
                                 <th width="15%">動画</th>
                                 <th width="10%">編集</th>
                                 <th width="20%">タグ</th>
-                                <th width="5%">いいね数</th>
-                                <th width="5%">コメント数</th>
+                                <th width="12%">いいね数</th>
+                                <th width="13%">コメント数</th>
                             
                             </tr>
                         </thead>
@@ -54,14 +53,20 @@
                             @foreach($posts as $post)
                                 <tr>
                                     <!--ID-->
-                                    <th>{{ $post->id }}</th>
+                                    <!--<th>{{ $post->id }}</th>-->
                                     <!--記事名-->
                                     <td>{{ \Str::limit($post->title, 100) }}</td>
                                     <!--曲名-->
                                     <td>{{ \Str::limit($post->songtitle, 250) }}</td>
                                     <!--動画-->
                                     <td> 
-                                        <video src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls></video>
+                                        <!--<video controls width="300">-->
+                                        <!--    <source src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls>-->
+                                        <!--</video>-->
+                                        
+                                        <iframe src="{{$post->movie}}"></iframe>
+                                        
+                                    </td>
                                     </td>
                                     {{-- secure_asset→Laravel上のpublicディレクトリの中のPathを指している --}}
                                     <!--編集-->
