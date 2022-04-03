@@ -60,11 +60,11 @@
                                     <td>{{ \Str::limit($post->songtitle, 250) }}</td>
                                     <!--動画-->
                                     <td> 
-                                        <!--<video controls width="300">-->
-                                        <!--    <source src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls>-->
-                                        <!--</video>-->
+                                        <video controls width="300">
+                                            <source src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls>
+                                        </video>
                                         
-                                        <iframe src="{{$post->movie}}"></iframe>
+                                        <!--<iframe src="{{$post->movie}}"></iframe>-->
                                         
                                     </td>
                                     </td>

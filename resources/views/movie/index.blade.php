@@ -7,7 +7,7 @@
 <!--ここから貼り付け-->
    <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4">こんにちは！</h1>
+      <h1 class="display-4"><b>こんにちは！</B></h1>
       <p class="lead">ようこそM-Lifeへ。ご自身のイチオシ演奏動画をUPして、コミュニティを広げていきましょう。<br>初めての方はまずは新規登録へ</p>
       <center><a class="btn btn-outline-primary btn-lg" href="{{ route('register') }}">新規登録</a>
       <a class="btn btn-outline-primary btn-lg" href="{{ route('login') }}">ログイン</a></center>
@@ -16,7 +16,7 @@
   <div class="container">
       
       
-      <img class="custom" src="{{ asset('img/music.png') }}" alt="">
+      <img class="custom" src="{{ asset('img/m-life_logo.png') }}" alt="">
 
   </div><!-- /.container -->
 

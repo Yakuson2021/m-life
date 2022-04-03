@@ -55,7 +55,8 @@
                     <div class="form-group row">
                         <label class="col-md-2" for="title">動画リンク</label>
                         <div class="col-md-7">
-                            <input type="text" class="form-control" name="movie">
+                            <!--<input type="text" class="form-control" name="movie">-->
+                            <input type="file" class="form-control-file" name="movie">
                         </div>
                     </div>
                      <input type="hidden" class="form-control-file" name="user_id", value="{{ $user_id }}">
