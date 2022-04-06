@@ -8,16 +8,14 @@
    <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4"><b>こんにちは！</B></h1>
-      <p class="lead">ようこそM-Lifeへ。ご自身のイチオシ演奏動画をUPして、コミュニティを広げていきましょう。<br>初めての方はまずは新規登録へ</p>
+      <p class="lead">ようこそM-Lifeへ。<br>こちらはショート動画の投稿サイトです。ご自身のイチオシ演奏のショート動画をUPして、コミュニティを広げていきましょう。<br>（ファイルサイズが7メガバイトまで）初めての方はまずは新規登録へ！</p>
       <center><a class="btn btn-outline-primary btn-lg" href="{{ route('register') }}">新規登録</a>
       <a class="btn btn-outline-primary btn-lg" href="{{ route('login') }}">ログイン</a></center>
     </div>
-    </div>
   <div class="container">
       
-      
-      <img class="custom" src="{{ asset('img/m-life_logo.png') }}" alt="">
 
+      <img class="custom" src="{{ asset('img/m-life_logo.png') }}" alt="">
   </div><!-- /.container -->
 
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js" integrity="sha384-Qg00WFl9r0Xr6rUqNLv1ffTSSKEFFCDCKVyHZ+sVt8KuvG99nWw5RNvbhuKgif9z" crossorigin="anonymous"></script>

@@ -53,8 +53,9 @@
                     </div>
                     
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">動画リンク</label>
+                        <label class="col-md-2" for="title">動画ファイル</label>
                         <div class="col-md-7">
+                            ※動画のファイルサイズ：上限7MBまで
                             <!--<input type="text" class="form-control" name="movie">-->
                             <input type="file" class="form-control-file" name="movie">
                         </div>
