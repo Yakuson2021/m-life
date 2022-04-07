@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 // 以下を追記することでPost Modelと、TagModelが扱えるようになる
 use App\Post;
 use App\Tag;
+use Storage; //追加
 
 
 class MovieController extends Controller
@@ -33,10 +34,12 @@ class MovieController extends Controller
       if (isset($form['movie'])) {
       // //storeは引数の場所に保存するメソッド//
       // //public/movieに保存したデータの、実際の保存場所を返してそれをPathに代入している
-        $path = $request->file('movie')->store('public/movie');
+        // $path = $request->file('movie')->store('public/movie');
+        $path =Storage::disk('s3')->putFile('/',$form['movie'],'public');
       //   //代入されたPathからファイル名だけを取り出すメソッドがbasename。
       //   //結果としてデータベースに保存されるのがファイル名
-        $post->movie = basename($path);
+      // $post->movie = basename($path);
+        $post->movie= Storage::disk('s3')->url($path);
         
         } else {
           $post->movie = null;
@@ -115,8 +118,10 @@ public function index(Request $request)
       $post_form = $request->all();
       
       if ($request->file('movie')) {
-          $path = $request->file('movie')->store('public/movie');
-          $post->movie = basename($path);
+          // $path = $request->file('movie')->store('public/movie');
+          $path =Storage::disk('s3')->putFile('/',$form['movie'],'public');
+          // $post->movie = basename($path);
+          $post->movie= Storage::disk('s3')->url($path);
      } else {
           $post_form['movie'] = $post->movie;
           // $post->movie = null;

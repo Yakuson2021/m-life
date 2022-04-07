@@ -61,7 +61,7 @@
                                     <!--動画-->
                                     <td> 
                                         <video controls width="300">
-                                            <source src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls>
+                                            <source src="{{$post->movie }}" controls>
                                         </video>
                                         
                                         <!--<iframe src="{{$post->movie}}"></iframe>-->

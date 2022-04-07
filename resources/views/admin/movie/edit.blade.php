@@ -62,7 +62,7 @@
                       <label class="col-md-2" for="title">動画</label>
                         <div class="col-md-5">
                             <td> 
-                            <video src="{{ secure_asset('storage/movie/' . $post_form->movie) }}" controls></video>
+                            <video src="{{$post_form->movie}}" controls></video>
                                 <div class="form-text text-info">{{ $post_form->movie }}　
                                     <input type="file" class="form-control-file" name="movie">
                                 </div>

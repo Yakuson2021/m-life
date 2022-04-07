@@ -51,7 +51,7 @@
                                     <td>{{ \Str::limit($post->songtitle, 250) }}</td>
                                     <td> 
                                     <video controls width="250">
-                                        <source src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls>
+                                        <source src="{{$post->movie}}" controls>
                                     </video>
                                     
                                     </td>

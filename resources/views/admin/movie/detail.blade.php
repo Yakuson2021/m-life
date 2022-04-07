@@ -51,7 +51,7 @@
                     <label class="col-md-4" for="title">動画タイトル</label>
                         <div class="col-md-11">
                             <td> 
-                                <video src="{{ secure_asset('storage/movie/' . $post_form->movie) }}" controls></video>
+                                <video src="{{ $post_form->movie }}" controls></video>
                             </td>                           
                         </div>
              </div>

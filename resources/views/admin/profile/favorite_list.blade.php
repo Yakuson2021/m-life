@@ -55,7 +55,7 @@
                                     <td>{{ \Str::limit($post->title, 100) }}</td>
                                     <td>{{ \Str::limit($post->songtitle, 250) }}</td>
                                     <td> 
-                                        <video src="{{ secure_asset('storage/movie/' . $post->movie) }}" controls></video>
+                                        <video src="{{$post->movie}}" controls></video>
                                     </td>
                                     {{-- secure_asset→Laravel上のpublicディレクトリの中のPathを指している --}}
                                     <td> 
