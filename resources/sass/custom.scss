@@ -1,6 +1,22 @@
 .custom {
-  color: #fff !important;
+  text-align: center;
+  
 .custom-2{
+    
+    .py-4 {
+  padding-bottom: 0.5rem !important;
+}
   
 }
+}
+
+main.container {
+    background-color: #e9ecef;
+    
+    .jumbotron {
+        background-color: inherit;
+    }
+    .jumbotron {
+    padding: 0rem 0rem;
+    }
 }

@@ -10964,6 +10964,22 @@ a.text-dark:focus {
 }
 
 .custom {
-  color: #fff !important;
+  text-align: center;
+}
+
+.custom .custom-2 .py-4 {
+  padding-bottom: 0.5rem !important;
+}
+
+main.container {
+  background-color: #e9ecef;
+}
+
+main.container .jumbotron {
+  background-color: inherit;
+}
+
+main.container .jumbotron {
+  padding: 0rem 0rem;
 }
 

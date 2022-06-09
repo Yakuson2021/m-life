@@ -87,7 +87,7 @@
 
     
   </nav>
-        <main class="py-4">
+        <main class="py-4 container">
           
             {{-- コンテンツをここに入れるため、@yieldで空けておきます。 --}}
             @yield('content')
